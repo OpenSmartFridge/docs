@@ -1,0 +1,67 @@
+---
+sidebar_position: 3
+---
+
+# Konfiguration
+
+Alle Laufzeiteinstellungen werden über Umgebungsvariablen gelesen.
+
+## Allgemein
+
+| Variable | Bedeutung | Beispiel |
+| --- | --- | --- |
+| `PORT` | HTTP-Port | `8000` |
+| `HTTPS` | HTTPS-Cookie-Flag | `true` |
+| `TIMEZONE` | Zeitzone für Cronjobs | `Europe/Berlin` |
+
+## Datenbanken
+
+| Variable | Bedeutung |
+| --- | --- |
+| `DATABASE_URL` | PostgreSQL-Verbindungszeichenfolge |
+| `POSTGRES_DB` | Datenbankname für Compose |
+| `POSTGRES_USER` | PostgreSQL-Benutzer für Compose |
+| `POSTGRES_PASSWORD` | PostgreSQL-Passwort für Compose |
+| `REDIS_URL` | Adresse des KeyDB-/Redis-Servers |
+| `REDIS_PASSWORD` | Optionales Passwort |
+
+## Benachrichtigungen
+
+| Variable | Bedeutung |
+| --- | --- |
+| `NOTIFICATION_PRIORITY` | Standardpriorität |
+| `NOTIFICATION_CRON` | Durch Semikolon getrennte Cron-Ausdrücke mit Sekunden |
+
+Der Standardzeitplan `0 0 8 * * *;0 0 18 * * *` prüft Produkte täglich um 08:00 und 18:00 Uhr.
+
+## LLM-Anbieter
+
+`LLM_PROVIDER` unterstützt `openai`, `anthropic` und `custom`.
+
+```dotenv
+# OpenAI
+LLM_PROVIDER=openai
+LLM_LANGUAGE=DEUTSCH
+OPENAI_API_KEY=<key>
+OPENAI_MODEL=<model>
+```
+
+```dotenv
+# Anthropic
+LLM_PROVIDER=anthropic
+LLM_LANGUAGE=DEUTSCH
+ANTHROPIC_API_KEY=<key>
+ANTHROPIC_MODEL=<model>
+```
+
+```dotenv
+# OpenAI-kompatibler Anbieter
+LLM_PROVIDER=custom
+LLM_LANGUAGE=DEUTSCH
+CUSTOM_BASE_URL=<base-url>
+CUSTOM_MODEL=<model>
+CUSTOM_KEY=<key>
+```
+
+Verwende starke Datenbankpasswörter und sichere API-Schlüssel.
+Committe keine `.env`-Datei oder echten Zugangsdaten.

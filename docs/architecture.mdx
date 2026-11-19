@@ -1,0 +1,52 @@
+---
+sidebar_position: 5
+---
+
+# Architektur
+
+## Backend
+
+Das Backend ist in Go geschrieben und befindet sich in `main.go` sowie unter `database/`.
+Beim Start erstellt es die benötigten Datenbanktabellen automatisch.
+
+Wichtige Komponenten:
+
+- `main.go`: HTTP-Routen, Handler, Serverstart und Cronjobs
+- `database/users.go`: Benutzer und Ernährungsprofile
+- `database/products.go`: Produkte und Ablaufprüfung
+- `database/recipes.go`: Rezeptdaten
+- `database/sessions.go`: Sitzungen
+- `database/api.go`: gehashte API-Schlüssel
+- `database/notifications.go`: Gotify und ntfy
+- `llm/llm.go`: OpenAI-, Anthropic- und Custom-Client
+
+## Frontend
+
+Das Frontend basiert auf React, TypeScript und Vite.
+Der Produktionsbuild wird nach `frontend/dist` erzeugt und vom Go-Server eingebettet.
+
+Zentrale Dateien:
+
+- `App.tsx`: Sitzungsprüfung und Ansichtswechsel
+- `Dashboard.tsx`: Hauptnavigation
+- `ProductsTab.tsx`: Produktverwaltung und Barcode-Scanner
+- `RecipesTab.tsx`: Rezeptanzeige und Generierung
+- `SettingsTab.tsx`: Profil- und Benutzerverwaltung
+- `api.ts`: Frontend-API-Aufrufe
+
+## Containermodell
+
+`compose.yaml` startet drei Services:
+
+| Service | Aufgabe |
+| --- | --- |
+| `app` | Go-Backend und eingebautes React-Frontend |
+| `postgres` | Persistente Anwendungsdaten |
+| `keydb` | Produkt- und Rezeptcache |
+
+`postgres_data` und `keydb_data` sind benannte Docker-Volumes.
+
+## Mobile App
+
+Die Mobile-App kommuniziert direkt mit der öffentlichen HTTP-API des Go-Servers.
+Sie verwendet keine eigene Datenbank und speichert lediglich die Base-URL, den Session-Cookie und einen lokalen Auth-Cache.

@@ -1,0 +1,54 @@
+---
+sidebar_position: 6
+---
+
+# Mobile App installieren
+
+## Voraussetzungen
+
+- Node.js 20 oder neuer
+- Expo CLI oder die Expo Go App
+- Android oder iOS
+- Eine erreichbare OpenSmartFridge-Serverinstanz
+
+## Entwicklung starten
+
+Im Projektverzeichnis der mobilen App:
+
+```bash
+npm install
+npm start
+```
+
+Die Expo-Anwendung kann anschließend auf einem Gerät oder Emulator geöffnet werden.
+
+Für native Android-Builds:
+
+```bash
+npm run android
+```
+
+Für native iOS-Builds:
+
+```bash
+npm run ios
+```
+
+## Expo Application Services
+
+`eas.json` enthält die Buildprofile `development`, `preview` und `production`.
+Das Production-Profil erzeugt eine Android-APK und erhöht die Remote-App-Version automatisch.
+
+```bash
+npx eas build --profile preview --platform android
+npx eas build --profile production --platform android
+```
+
+## Serveradresse
+
+Nach dem Start der App wird auf der Login- beziehungsweise Registrierungsseite eine Base-URL eingegeben.
+Die Adresse wird lokal mit AsyncStorage gespeichert und sollte das Schema enthalten:
+
+```text
+https://smartfridge.example.com
+```

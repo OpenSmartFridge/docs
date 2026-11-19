@@ -1,0 +1,52 @@
+---
+sidebar_position: 7
+---
+
+# Mobile App verwenden
+
+## Anmeldung
+
+Auf der Login-Seite werden Serveradresse, Benutzername und Passwort eingegeben.
+Nach erfolgreicher Anmeldung speichert die App den von `/api/login` zurückgegebenen Session-Cookie lokal.
+
+## Produkte
+
+Der Tab **Produkte** bietet:
+
+- Hinzufügen eines Produkts mit Name oder Barcode
+- Auswahl des Ablaufdatums
+- Kamera-Scanning von QR-, EAN-13- und EAN-8-Codes
+- Bearbeiten und Löschen vorhandener Produkte
+- Pull-to-Refresh
+
+Wird in das Produktfeld nur eine Zahl eingegeben, verwendet die App den Barcode-Endpunkt.
+Alle anderen Eingaben werden als Produktname behandelt.
+
+## Rezepte
+
+Der Tab **Rezepte** zeigt:
+
+- gespeicherte Rezepte
+- Favoritenstatus
+- Zutaten und Zubereitung nach Ausklappen
+- manuelle oder frische Rezeptgenerierung
+
+Die normale Generierung kann einen zwischengespeicherten Rezeptvorschlag verwenden.
+Das Aktualisierungssymbol erzwingt eine neue Generierung über `/api/generate_fresh_recipe`.
+
+## Profil
+
+Im Profilbereich können eingestellt werden:
+
+- Ernährungspräferenzen
+- Passwort
+- Gotify- oder ntfy-Benachrichtigungen
+- API-Schlüssel
+- eigenes Benutzerkonto
+
+Der API-Schlüssel wird in die Zwischenablage kopiert und sollte nach dem Anzeigen sicher gespeichert werden.
+
+## Berechtigungen
+
+Für Barcode-Scans benötigt die App Kamerazugriff.
+Bei verweigerter Berechtigung kann weiterhin ein Barcode manuell eingegeben werden.

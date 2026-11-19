@@ -1,0 +1,43 @@
+---
+sidebar_position: 2
+---
+
+# Installation
+
+## Docker Compose
+
+1. Die Projektkonfiguration kopieren:
+
+```bash
+cp docker.example.env .env
+```
+
+2. Passwörter und LLM-Zugangsdaten in `.env` setzen.
+3. Image bauen und Container starten:
+
+```bash
+./create-image.sh
+docker compose up -d
+```
+
+Die Anwendung ist standardmäßig unter `http://localhost:8000` erreichbar.
+
+## Lokale Entwicklung
+
+PostgreSQL und KeyDB müssen erreichbar sein. Anschließend die Beispielkonfiguration kopieren und anpassen:
+
+```bash
+cp example.env .env
+./start.sh
+```
+
+`start.sh` aktualisiert Go-Abhängigkeiten, installiert Frontend-Abhängigkeiten und startet den Go-Server.
+
+## Erste Benutzeranlage
+
+Benutzer können sich über die Registrierungsseite anlegen.
+Mit der CLI kann ein bestehender Benutzer zum Administrator gemacht oder zurückgestuft werden:
+
+```bash
+docker compose exec app ./smartfridge chadm <benutzername>
+```

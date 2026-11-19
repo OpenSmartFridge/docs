@@ -1,0 +1,63 @@
+---
+sidebar_position: 6
+---
+
+# API
+
+Die REST-API wird vom Go-Server unter `/api` bereitgestellt.
+Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
+
+## Benutzer
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `POST` | `/api/create_user` | Benutzer registrieren |
+| `POST` | `/api/login` | Benutzer anmelden |
+| `GET` | `/api/me` | Aktuelle Benutzerdaten laden |
+| `GET` | `/api/logout` | Sitzung beenden |
+| `POST` | `/api/update_password` | Passwort ändern |
+| `POST` | `/api/update_diet` | Ernährungsprofil ändern |
+
+## Produkte
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `GET` | `/api/get_products` | Produkte des angemeldeten Benutzers |
+| `POST` | `/api/create_product` | Produkt erstellen |
+| `POST` | `/api/create_product_barcode` | Produkt per Barcode erstellen |
+| `POST` | `/api/update_product` | Produkt bearbeiten |
+| `POST` | `/api/delete_product` | Produkt löschen |
+
+`POST /api/get_products_with_key` erwartet einen JSON-Body:
+
+```json
+{
+  "key": "api-schluessel"
+}
+```
+
+## Rezepte
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `GET` | `/api/generate_recipe` | Rezept aus Cache oder LLM erzeugen |
+| `GET` | `/api/generate_fresh_recipe` | Neues Rezept erzwingen |
+| `GET` | `/api/get_recipes` | Gespeicherte Rezepte laden |
+| `POST` | `/api/toggle_favorite` | Favoritenstatus ändern |
+| `POST` | `/api/delete_recipe` | Rezept löschen |
+
+## Administration
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `POST` | `/api/delete_user` | Benutzer als Administrator löschen |
+| `GET` | `/api/delete_own_user` | Eigenes Konto löschen |
+| `GET` | `/api/get_users` | Benutzer als Administrator auflisten |
+| `GET` | `/api/create_key` | Persönlichen API-Schlüssel erzeugen |
+
+## Benachrichtigungen
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `POST` | `/api/insert_notification_provider` | Gotify oder ntfy konfigurieren |
+| `POST` | `/api/send_test_notification` | Testbenachrichtigung senden |

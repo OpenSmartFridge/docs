@@ -1,0 +1,46 @@
+---
+sidebar_position: 4
+---
+
+# Nutzung
+
+## Anmeldung
+
+Nach der Registrierung meldet sich ein Benutzer über die Login-Seite an.
+Die Sitzung wird verlängert und serverseitig in PostgreSQL gespeichert.
+
+## Produkte
+
+Unter **Produkte** können Einträge auf zwei Arten erstellt werden:
+
+- Name und Ablaufdatum manuell eingeben
+- Barcode eingeben oder per Kamera erfassen
+
+Für einen neuen Barcode fragt der Server Open Food Facts ab.
+Das Ergebnis wird 30 Tage in KeyDB zwischengespeichert.
+
+Bestehende Produkte können bearbeitet oder gelöscht werden.
+
+## Rezepte
+
+Unter **Rezepte** generiert OpenSmartFridge auf Basis der vorhandenen Produkte ein Rezept.
+Dabei werden Ernährungsvorgaben des Benutzers berücksichtigt.
+
+Die Produktliste wird an den konfigurierten LLM-Anbieter gesendet.
+Antworten müssen der festgelegten JSON-Struktur entsprechen.
+
+## Ernährungseinstellungen
+
+Ein Ernährungshinweis kann zum Beispiel so aussehen:
+
+```text
+vegetarisch, keine Nüsse
+```
+
+Der Hinweis wird in den Rezept-Prompt aufgenommen.
+
+## API-Zugriff
+
+Über die Einstellungen kann ein persönlicher API-Schlüssel erzeugt werden.
+Der Klartext wird nur bei der Erstellung angezeigt.
+Die Datenbank speichert ausschließlich den SHA-256-Hash des Schlüssels.

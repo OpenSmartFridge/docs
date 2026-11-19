@@ -1,0 +1,30 @@
+---
+sidebar_position: 5
+---
+
+# Mobile App
+
+Die mobile App ist eine Expo-/React-Native-Anwendung für Android und iOS.
+Sie nutzt dieselben `/api`-Endpunkte wie die Weboberfläche.
+
+## Technologien
+
+- Expo 58
+- React 19
+- React Native 0.88
+- React Native Paper 5
+- React Native Paper Dates
+- Expo Camera
+- AsyncStorage
+
+## Projektstruktur
+
+```text
+src/
+├── components/  App-Bar, Navigation und Datenkarten
+├── context/     Gemeinsamer Anwendungszustand
+├── lib/         API- und Cookie-Hilfsfunktionen
+└── pages/       Login, Registrierung, Produkte, Rezepte und Profil
+```
+
+Die Anwendung unterstützt automatische helle und dunkle Themes entsprechend dem Systemmodus.
