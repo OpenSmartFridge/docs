@@ -6,21 +6,38 @@ sidebar_position: 2
 
 ## Docker Compose
 
-1. Die Projektkonfiguration kopieren:
+1. Das Server-Repository klonen und die Beispielkonfiguration kopieren:
 
 ```bash
+git clone https://github.com/OpenSmartFridge/server.git
+cd server
 cp docker.example.env .env
 ```
 
-2. Passwörter und LLM-Zugangsdaten in `.env` setzen.
-3. Image bauen und Container starten:
+2. Datenbankpasswörter und Zugangsdaten des gewünschten LLM-Anbieters in `.env` setzen. Für lokalen HTTP-Betrieb `HTTPS=false` verwenden; bei HTTPS muss `HTTPS=true` gesetzt sein.
+3. Das veröffentlichte Image laden und den Stack starten:
 
 ```bash
-./create-image.sh
+docker pull opensmartfridge/server:latest
 docker compose up -d
 ```
 
-Die Anwendung ist standardmäßig unter `http://localhost:8000` erreichbar.
+Compose startet den Server, PostgreSQL und KeyDB. Die Anwendung ist standardmäßig unter `http://localhost:8000` erreichbar. Die Daten bleiben in den Volumes `postgres_data` und `keydb_data` erhalten.
+
+Zum Stoppen:
+
+```bash
+docker compose down
+```
+
+### Eigenes Image bauen
+
+`compose.yaml` verwendet standardmäßig `opensmartfridge/server:latest`. Ein selbst gebautes Image muss daher genau mit diesem Tag versehen werden, damit Compose es verwendet:
+
+```bash
+docker build -t opensmartfridge/server:latest .
+docker compose up -d
+```
 
 ## Lokale Entwicklung
 
@@ -31,7 +48,7 @@ cp example.env .env
 ./start.sh
 ```
 
-`start.sh` aktualisiert Go-Abhängigkeiten, installiert Frontend-Abhängigkeiten und startet den Go-Server.
+`start.sh` aktualisiert Go-Abhängigkeiten, installiert die Frontend-Abhängigkeiten, baut die Weboberfläche und startet den Go-Server. Die Beispielkonfiguration verwendet Port `8001`; PostgreSQL und KeyDB müssen lokal erreichbar sein.
 
 ## Erste Benutzeranlage
 
@@ -39,5 +56,5 @@ Benutzer können sich über die Registrierungsseite anlegen.
 Mit der CLI kann ein bestehender Benutzer zum Administrator gemacht oder zurückgestuft werden:
 
 ```bash
-docker compose exec app ./smartfridge chadm <benutzername>
+docker compose exec app /app/smartfridge chadm <benutzername>
 ```

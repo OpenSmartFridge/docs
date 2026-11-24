@@ -4,27 +4,26 @@ sidebar_position: 5
 
 # Mobile App
 
-Die mobile App ist eine Expo-/React-Native-Anwendung für Android und iOS.
-Sie nutzt dieselben `/api`-Endpunkte wie die Weboberfläche.
+Die mobile App ist eine Expo-/React-Native-Anwendung für Android und iOS; Expo Web ist ebenfalls konfiguriert.
+Sie verbindet sich mit einer OpenSmartFridge-Serverinstanz und nutzt deren `/api`-Endpunkte.
 
 ## Technologien
 
 - Expo 58
-- React 19
-- React Native 0.88
+- React 19.3 und React Native 0.88
 - React Native Paper 5
-- React Native Paper Dates
-- Expo Camera
-- AsyncStorage
+- Expo Camera, Expo Clipboard und React Native Paper Dates
+- AsyncStorage für Serveradresse, Sitzungscookie und lokalen Anmeldestatus
 
 ## Projektstruktur
 
 ```text
+App.js                 Theme, Provider und App-Einstieg
 src/
-├── components/  App-Bar, Navigation und Datenkarten
-├── context/     Gemeinsamer Anwendungszustand
-├── lib/         API- und Cookie-Hilfsfunktionen
-└── pages/       Login, Registrierung, Produkte, Rezepte und Profil
+├── components/         App-Bar, Navigation, Produkt- und Rezeptkarten
+├── context/            Gemeinsamer Anwendungszustand
+├── lib/                API- und Cookie-Hilfsfunktionen
+└── pages/               Login, Registrierung, Produkte, Rezepte und Profil
 ```
 
-Die Anwendung unterstützt automatische helle und dunkle Themes entsprechend dem Systemmodus.
+Die App stellt nach der Anmeldung die Tabs **Produkte**, **Rezepte** und **Profil** bereit. Das helle oder dunkle Theme wird automatisch anhand des Systemmodus gewählt.

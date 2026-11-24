@@ -5,7 +5,7 @@ sidebar_position: 1
 # OpenSmartFridge
 
 OpenSmartFridge verwaltet Produkte, Ablaufdaten, Rezepte und Benutzer.
-Die Anwendung besteht aus einem React-Frontend, einem Go-Backend sowie PostgreSQL und KeyDB.
+Der Server besteht aus einem Go-Backend mit integrierter React-Weboberfläche und verwendet PostgreSQL sowie KeyDB.
 
 ## Funktionen
 
@@ -13,9 +13,9 @@ Die Anwendung besteht aus einem React-Frontend, einem Go-Backend sowie PostgreSQ
 - Ablaufdaten anzeigen und bearbeiten
 - Ernährungseinstellungen für KI-generierte Rezepte hinterlegen
 - Rezepte aus dem aktuellen Produktbestand generieren
-- Rezepte speichern und Favoriten verwalten
-- Benutzer, API-Schlüssel und Benachrichtigungsanbieter verwalten
-- Gotify- oder ntfy-Benachrichtigungen für bald ablaufende Produkte
+- Generierte Rezepte speichern und erneut anzeigen
+- Als Administrator Benutzer verwalten; persönliche API-Schlüssel für den Produktzugriff erstellen
+- Gotify- oder ntfy-Benachrichtigungen für bald ablaufende Produkte per API konfigurieren
 
 ## Systemübersicht
 
@@ -36,7 +36,7 @@ PostgreSQL  KeyDB
 ## Voraussetzungen
 
 - Docker mit Docker Compose für den empfohlenen Betrieb
-- Alternativ: Go 1.26, Node.js 24, PostgreSQL und KeyDB
+- Alternativ: Go 1.26.5, Node.js 24, PostgreSQL 17 und KeyDB
 - Einen API-Schlüssel für OpenAI, Anthropic oder einen OpenAI-kompatiblen Anbieter
 
 ## GitHub-Repositories

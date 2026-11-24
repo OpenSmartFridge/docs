@@ -11,28 +11,28 @@ Alle Laufzeiteinstellungen werden über Umgebungsvariablen gelesen.
 | Variable | Bedeutung | Beispiel |
 | --- | --- | --- |
 | `PORT` | HTTP-Port | `8000` |
-| `HTTPS` | HTTPS-Cookie-Flag | `true` |
+| `HTTPS` | Setzt das Secure-Flag des Sitzungscookies; für HTTP lokal `false`, für HTTPS `true` | `true` |
 | `TIMEZONE` | Zeitzone für Cronjobs | `Europe/Berlin` |
 
 ## Datenbanken
 
 | Variable | Bedeutung |
 | --- | --- |
-| `DATABASE_URL` | PostgreSQL-Verbindungszeichenfolge |
+| `DATABASE_URL` | PostgreSQL-Verbindungszeichenfolge; in Compose muss der Hostname `postgres` sein |
 | `POSTGRES_DB` | Datenbankname für Compose |
 | `POSTGRES_USER` | PostgreSQL-Benutzer für Compose |
 | `POSTGRES_PASSWORD` | PostgreSQL-Passwort für Compose |
-| `REDIS_URL` | Adresse des KeyDB-/Redis-Servers |
+| `REDIS_URL` | Adresse des KeyDB-/Redis-Servers im Format `host:port` |
 | `REDIS_PASSWORD` | Optionales Passwort |
 
 ## Benachrichtigungen
 
 | Variable | Bedeutung |
 | --- | --- |
-| `NOTIFICATION_PRIORITY` | Standardpriorität |
+| `NOTIFICATION_PRIORITY` | Wird aktuell vom Server nicht ausgewertet; Ablaufbenachrichtigungen verwenden für Gotify Priorität `8`, ntfy setzt sie auf `5` |
 | `NOTIFICATION_CRON` | Durch Semikolon getrennte Cron-Ausdrücke mit Sekunden |
 
-Der Standardzeitplan `0 0 8 * * *;0 0 18 * * *` prüft Produkte täglich um 08:00 und 18:00 Uhr.
+Der Standardzeitplan `0 0 8 * * *;0 0 18 * * *` prüft Produkte täglich um 08:00 und 18:00 Uhr in der mit `TIMEZONE` angegebenen Zeitzone. Die Prüfung meldet Produkte, die bereits abgelaufen sind oder innerhalb der nächsten sieben Tage ablaufen.
 
 ## LLM-Anbieter
 
@@ -65,3 +65,5 @@ CUSTOM_KEY=<key>
 
 Verwende starke Datenbankpasswörter und sichere API-Schlüssel.
 Committe keine `.env`-Datei oder echten Zugangsdaten.
+
+Für Docker Compose werden die Variablen aus `.env` geladen. `POSTGRES_DB`, `POSTGRES_USER` und `POSTGRES_PASSWORD` müssen zu `DATABASE_URL` passen; als Datenbankhost ist dort `postgres` einzutragen.

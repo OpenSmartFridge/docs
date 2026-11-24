@@ -7,7 +7,7 @@ sidebar_position: 4
 ## Anmeldung
 
 Nach der Registrierung meldet sich ein Benutzer über die Login-Seite an.
-Die Sitzung wird verlängert und serverseitig in PostgreSQL gespeichert.
+Die Sitzung wird serverseitig in PostgreSQL gespeichert und ist bis zu 30 Tage gültig.
 
 ## Produkte
 
@@ -16,18 +16,17 @@ Unter **Produkte** können Einträge auf zwei Arten erstellt werden:
 - Name und Ablaufdatum manuell eingeben
 - Barcode eingeben oder per Kamera erfassen
 
-Für einen neuen Barcode fragt der Server Open Food Facts ab.
+Für einen noch nicht bekannten Barcode fragt der Server Open Food Facts ab.
 Das Ergebnis wird 30 Tage in KeyDB zwischengespeichert.
 
 Bestehende Produkte können bearbeitet oder gelöscht werden.
 
 ## Rezepte
 
-Unter **Rezepte** generiert OpenSmartFridge auf Basis der vorhandenen Produkte ein Rezept.
-Dabei werden Ernährungsvorgaben des Benutzers berücksichtigt.
+Unter **Rezepte** kannst du ein Rezept auf Basis der vorhandenen Produkte generieren und zuvor generierte Rezepte erneut ansehen.
+Dabei werden die Ernährungsvorgaben des Benutzers berücksichtigt.
 
-Die Produktliste wird an den konfigurierten LLM-Anbieter gesendet.
-Antworten müssen der festgelegten JSON-Struktur entsprechen.
+Die Produktliste und Ernährungsvorgaben werden an den konfigurierten LLM-Anbieter gesendet. Verwende daher nur einen Anbieter, dem du diese Daten anvertrauen möchtest.
 
 ## Ernährungseinstellungen
 
@@ -39,8 +38,8 @@ vegetarisch, keine Nüsse
 
 Der Hinweis wird in den Rezept-Prompt aufgenommen.
 
-## API-Zugriff
+## Einstellungen und Administration
 
-Über die Einstellungen kann ein persönlicher API-Schlüssel erzeugt werden.
-Der Klartext wird nur bei der Erstellung angezeigt.
-Die Datenbank speichert ausschließlich den SHA-256-Hash des Schlüssels.
+Unter **Einstellungen** lassen sich Ernährungsvorgaben und Passwort ändern sowie ein persönlicher API-Schlüssel erstellen. Der Klartext des API-Schlüssels wird nur bei der Erstellung angezeigt; in der Datenbank wird ausschließlich sein SHA-256-Hash gespeichert.
+
+Administratoren können in der Benutzerverwaltung andere Benutzer auflisten und löschen. Für zusätzliche Funktionen wie das Konfigurieren eines Benachrichtigungsanbieters oder das Erzeugen eines frischen Rezepts stehen API-Endpunkte bereit; sie sind in der aktuellen Weboberfläche nicht als Bedienelemente enthalten.

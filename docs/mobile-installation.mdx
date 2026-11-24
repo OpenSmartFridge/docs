@@ -6,23 +6,28 @@ sidebar_position: 6
 
 ## Voraussetzungen
 
-- Node.js 20 oder neuer
-- Expo CLI oder die Expo Go App
-- Android oder iOS
+- Node.js und npm
+- Android- oder iOS-Gerät/Emulator; für die Webversion einen unterstützten Browser
+- Expo Go zum Testen oder eine native Entwicklungsumgebung für lokale Builds
 - Eine erreichbare OpenSmartFridge-Serverinstanz
 
 ## Entwicklung starten
 
-Im Projektverzeichnis der mobilen App:
+Im Verzeichnis des Mobile-Repositories:
 
 ```bash
 npm install
 npm start
 ```
 
-Die Expo-Anwendung kann anschließend auf einem Gerät oder Emulator geöffnet werden.
+Expo startet den Entwicklungsserver. Öffne die App anschließend mit Expo Go oder in einem Emulator.
+Für die Webversion:
 
-Für native Android-Builds:
+```bash
+npm run web
+```
+
+Für lokale native Builds:
 
 ```bash
 npm run android
@@ -36,19 +41,21 @@ npm run ios
 
 ## Expo Application Services
 
-`eas.json` enthält die Buildprofile `development`, `preview` und `production`.
-Das Production-Profil erzeugt eine Android-APK und erhöht die Remote-App-Version automatisch.
+`eas.json` enthält die Buildprofile `development`, `preview` und `production`. Die App enthält bereits Owner und EAS-Projekt-ID. Preview und Production erzeugen für Android eine APK; Production erhöht die App-Version remote automatisch.
+Melde dich zuerst beim EAS-Konto an:
 
 ```bash
-npx eas build --profile preview --platform android
-npx eas build --profile production --platform android
+npx eas-cli login
+npx eas-cli build --profile preview --platform android
+npx eas-cli build --profile production --platform android
 ```
 
 ## Serveradresse
 
-Nach dem Start der App wird auf der Login- beziehungsweise Registrierungsseite eine Base-URL eingegeben.
-Die Adresse wird lokal mit AsyncStorage gespeichert und sollte das Schema enthalten:
+Auf der Login- und Registrierungsseite wird die Server-Base-URL eingegeben. Die Adresse wird lokal mit AsyncStorage gespeichert und sollte das Schema enthalten:
 
 ```text
 https://smartfridge.example.com
 ```
+
+Verwende bei einer öffentlich erreichbaren Serverinstanz HTTPS.

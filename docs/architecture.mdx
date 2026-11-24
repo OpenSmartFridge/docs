@@ -31,7 +31,7 @@ Zentrale Dateien:
 - `Dashboard.tsx`: Hauptnavigation
 - `ProductsTab.tsx`: Produktverwaltung und Barcode-Scanner
 - `RecipesTab.tsx`: Rezeptanzeige und Generierung
-- `SettingsTab.tsx`: Profil- und Benutzerverwaltung
+- `SettingsTab.tsx`: Ernährung, Passwort, API-Schlüssel und Benutzerverwaltung
 - `api.ts`: Frontend-API-Aufrufe
 
 ## Containermodell
@@ -42,7 +42,7 @@ Zentrale Dateien:
 | --- | --- |
 | `app` | Go-Backend und eingebautes React-Frontend |
 | `postgres` | Persistente Anwendungsdaten |
-| `keydb` | Produkt- und Rezeptcache |
+| `keydb` | Barcode- und Rezeptcache |
 
 `postgres_data` und `keydb_data` sind benannte Docker-Volumes.
 

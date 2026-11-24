@@ -4,8 +4,7 @@ sidebar_position: 6
 
 # API
 
-Die REST-API wird vom Go-Server unter `/api` bereitgestellt.
-Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
+Die REST-API wird vom Go-Server unter `/api` bereitgestellt. Sofern nicht anders angegeben, benötigen Endpunkte eine gültige Browser-Sitzung. Administrator-Endpunkte erfordern zusätzlich ein Administratorkonto.
 
 ## Benutzer
 
@@ -17,6 +16,7 @@ Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
 | `GET` | `/api/logout` | Sitzung beenden |
 | `POST` | `/api/update_password` | Passwort ändern |
 | `POST` | `/api/update_diet` | Ernährungsprofil ändern |
+| `GET` | `/api/delete_own_user` | Eigenes Konto löschen |
 
 ## Produkte
 
@@ -27,6 +27,13 @@ Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
 | `POST` | `/api/create_product_barcode` | Produkt per Barcode erstellen |
 | `POST` | `/api/update_product` | Produkt bearbeiten |
 | `POST` | `/api/delete_product` | Produkt löschen |
+
+## API-Schlüssel
+
+| Methode | Route | Beschreibung |
+| --- | --- | --- |
+| `GET` | `/api/create_key` | Persönlichen API-Schlüssel erzeugen |
+| `POST` | `/api/get_products_with_key` | Produkte mit API-Schlüssel abrufen (ohne Sitzung) |
 
 `POST /api/get_products_with_key` erwartet einen JSON-Body:
 
@@ -51,9 +58,7 @@ Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
 | Methode | Route | Beschreibung |
 | --- | --- | --- |
 | `POST` | `/api/delete_user` | Benutzer als Administrator löschen |
-| `GET` | `/api/delete_own_user` | Eigenes Konto löschen |
 | `GET` | `/api/get_users` | Benutzer als Administrator auflisten |
-| `GET` | `/api/create_key` | Persönlichen API-Schlüssel erzeugen |
 
 ## Benachrichtigungen
 
@@ -61,3 +66,5 @@ Mehrere Endpunkte benötigen eine gültige Browser-Sitzung.
 | --- | --- | --- |
 | `POST` | `/api/insert_notification_provider` | Gotify oder ntfy konfigurieren |
 | `POST` | `/api/send_test_notification` | Testbenachrichtigung senden |
+
+Die aktuelle Weboberfläche stellt keine Einstellungen für Benachrichtigungsanbieter oder Rezeptfavoriten bereit; diese Routen sind für API-Clients verfügbar.

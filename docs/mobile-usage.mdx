@@ -4,49 +4,46 @@ sidebar_position: 7
 
 # Mobile App verwenden
 
-## Anmeldung
+## Anmeldung und Registrierung
 
-Auf der Login-Seite werden Serveradresse, Benutzername und Passwort eingegeben.
-Nach erfolgreicher Anmeldung speichert die App den von `/api/login` zurückgegebenen Session-Cookie lokal.
+Auf der Login- oder Registrierungsseite werden Serveradresse, Benutzername und Passwort eingegeben. Die Serveradresse bleibt lokal gespeichert. Nach erfolgreicher Anmeldung speichert die App das Sitzungscookie lokal und verwendet es für API-Anfragen.
+Über das Logout-Symbol in der oberen Leiste wird die Sitzung beendet.
 
 ## Produkte
 
 Der Tab **Produkte** bietet:
 
-- Hinzufügen eines Produkts mit Name oder Barcode
-- Auswahl des Ablaufdatums
+- Hinzufügen eines Produkts mit Name oder Barcode und Ablaufdatum
 - Kamera-Scanning von QR-, EAN-13- und EAN-8-Codes
-- Bearbeiten und Löschen vorhandener Produkte
+- Bearbeiten des Produktnamens und Löschen vorhandener Produkte
+- Sortierung nach Ablaufdatum
 - Pull-to-Refresh
 
-Wird in das Produktfeld nur eine Zahl eingegeben, verwendet die App den Barcode-Endpunkt.
-Alle anderen Eingaben werden als Produktname behandelt.
+Nur numerische Eingaben werden als Barcode behandelt und über den Barcode-Endpunkt aufgelöst; andere Eingaben werden als Produktname verwendet. Für das Scannen benötigt die App Kamerazugriff. Ohne Kameraberechtigung kann ein Barcode weiterhin manuell eingegeben werden.
 
 ## Rezepte
 
 Der Tab **Rezepte** zeigt:
 
-- gespeicherte Rezepte
-- Favoritenstatus
-- Zutaten und Zubereitung nach Ausklappen
-- manuelle oder frische Rezeptgenerierung
+- gespeicherte Rezepte mit Zutaten und Zubereitung
+- Auf- und Zuklappen der Rezeptdetails
+- Markieren als Favorit und Löschen
+- normale sowie erzwungene frische Rezeptgenerierung
 
-Die normale Generierung kann einen zwischengespeicherten Rezeptvorschlag verwenden.
-Das Aktualisierungssymbol erzwingt eine neue Generierung über `/api/generate_fresh_recipe`.
+Die normale Generierung verwendet `/api/generate_recipe`; das Aktualisierungssymbol erzwingt eine neue Generierung über `/api/generate_fresh_recipe`.
 
 ## Profil
 
-Im Profilbereich können eingestellt werden:
+Im Tab **Profil** können eingestellt werden:
 
 - Ernährungspräferenzen
 - Passwort
-- Gotify- oder ntfy-Benachrichtigungen
-- API-Schlüssel
-- eigenes Benutzerkonto
+- Gotify- oder ntfy-Benachrichtigungen einschließlich Testnachricht
+- persönlicher API-Schlüssel
+- eigenes Benutzerkonto löschen
 
-Der API-Schlüssel wird in die Zwischenablage kopiert und sollte nach dem Anzeigen sicher gespeichert werden.
+Ein neu erstellter API-Schlüssel ersetzt den bisherigen Schlüssel. Er wird in der App angezeigt und kann in die Zwischenablage kopiert werden; speichere ihn sicher, da er nicht erneut angezeigt wird.
 
-## Berechtigungen
+## Darstellung und Aktualisierung
 
-Für Barcode-Scans benötigt die App Kamerazugriff.
-Bei verweigerter Berechtigung kann weiterhin ein Barcode manuell eingegeben werden.
+Die App verwendet automatisch das helle oder dunkle Theme des Geräts. Produkte und Rezepte lassen sich per Pull-to-Refresh aktualisieren; die Rezeptliste wird zusätzlich regelmäßig aktualisiert.
